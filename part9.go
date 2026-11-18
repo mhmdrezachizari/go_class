@@ -1,11 +1,20 @@
 package main
-import "fmt"
-
-func add(a int , b int) int {
-	return a+b
-}
+import (
+	"fmt"
+	"sync"
+	"time"
+)
 
 func main()  {
-	result:= add(12,19)
-	fmt.Println(result)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func ()  {
+		defer wg.Done()
+		fmt.Println("chai dar hal amade shodan")
+		time.Sleep(2*time.Second)
+		fmt.Println("chai  amade shod")
+	}()
+	fmt.Println("man miz ra michinam")
+	wg.Wait()
+	fmt.Println("mitavanid chai benoshid")
 }
